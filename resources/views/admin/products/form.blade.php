@@ -5,7 +5,7 @@
         <div class="col-12">
             <div class="card shadow">
                 <div class="card-header">
-                    <h2>Create Product</h2>
+                    <h2>@yield('header-title')</h2>
                 </div>
                 <div class="card-body">
                     <form class="form" action="@yield('action-url')" method="POST"
