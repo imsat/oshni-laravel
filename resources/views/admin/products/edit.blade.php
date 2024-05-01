@@ -10,7 +10,7 @@
 @section('purchase_price', $product->purchase_price)
 @section('sale_price', $product->sale_price)
 @section('image-show')
-    <img src="{{$product->image}}" class="img-thumbnail w-70 mt-1 mb-3" alt="Product image">
+    <img src="{{$product->image}}" class="img-thumbnail w-70 mb-3" alt="Product image">
 @endsection
 
 @section('submit-btn-text', 'Edit')
