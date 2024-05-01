@@ -27,7 +27,14 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/daterangepicker/daterangepicker.css') }}">
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs4.min.css') }}">
+    <!-- Sweetalert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @stack('styles')
+    <style>
+        .w-70 {
+            width: 70px;
+        }
+    </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -214,6 +221,26 @@
 <script src="{{ asset('assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('assets/dist/js/adminlte.js') }}"></script>
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+    });
+    window.Toast = Toast;
+    @if(Session::has('success'))
+    Toast.fire({icon: 'success', title: `{{Session::get('success')}}`});
+    @elseif(Session::has('warning'))
+    Toast.fire({icon: 'warning', title: `{{Session::get('warning')}}`});
+    @elseif(Session::has('error'))
+    Toast.fire({icon: 'error', title: `{{Session::get('error')}}`});
+    @elseif(Session::has('info'))
+    Toast.fire({icon: 'info', title: `{{Session::get('info')}}`});
+    @elseif(Session::has('failed'))
+    Toast.fire({icon: 'error', title: `{{Session::get('failed')}}`});
+    @endif
+</script>
 @stack('scripts')
 </body>
 </html>

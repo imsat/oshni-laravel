@@ -34,8 +34,29 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @forelse($purchases as $purchase)
+                            <tr>
+                                <td>{{$purchase->serial_number }}</td>
+                                <td>{{$purchase->date}}</td>
+                                <td>{{$purchase?->supplier?->name}}</td>
+                                <td>{{$purchase?->barcodes_sum_quantity}}</td>
+                                <td>
+                                    @foreach($purchase?->purchase_items as $item)
+                                                <p>{{$item?->product?->name}} => {{$item->purchase_item_barcodes->pluck('barcode')->implode(' || ')}}</p>
+                                    @endforeach
+{{--                                    {{$purchase->}}--}}
+                                </td>
+
+                            </tr>
+                        @empty
+                            <p class="text-center">No product yet</p>
+                        @endforelse
                         </tbody>
                     </table>
+
+                    <div class="d-flex justify-content-center">
+                        {{ $purchases->links()}}
+                    </div>
                 </div>
                 <!-- /.card-body -->
             </div>

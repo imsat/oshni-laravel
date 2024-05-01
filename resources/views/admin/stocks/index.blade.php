@@ -36,8 +36,24 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @forelse($products as $product)
+                            <tr>
+                                <td>{{$product->product_name }}</td>
+                                <td>{{$product->purchase_qty}}</td>
+                                <td>{{$product?->purchase_return_qty}}</td>
+                                <td>{{$product?->sale_qty}}</td>
+                                <td>{{$product?->sale_return_qty}}</td>
+                                <td>{{$product?->stock_qty}}</td>
+                            </tr>
+                        @empty
+                            <p class="text-center">No stock yet</p>
+                        @endforelse
                         </tbody>
                     </table>
+
+                    <div class="d-flex justify-content-center">
+                        {{ $products->links()}}
+                    </div>
                 </div>
                 <!-- /.card-body -->
             </div>
